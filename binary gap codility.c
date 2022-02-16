@@ -19,57 +19,44 @@ Write an efficient algorithm for the following assumptions:
 
 *******************************************************************************/
 #include <stdio.h>
-#include <stdlib.h>
+
+long count = 0;
+long max = 0;
+
+void binary(long N) {
+    if (N > 1) { 
+        binary(N / 2);
+    }
+    if (N % 2 == 0) {
+        count += 1;
+        return;
+    } 
+    if (max < count) {
+        max = count;
+    }
+    bits = 0;
+}
+
+long solution(long N) {
+    binary(N);
+    return max;
+}
+
 
 
 int main()
-{  
-    
-int number,i,k,m;
-int j =0;
-int contador = 0;
-int pointer =0; 
-int *array, *arrayAux1;
-array = (int *) malloc (10* sizeof(int));
-arrayAux1 = (int *) malloc (10* sizeof(int));
-
+{
+long N;
+long gap;
 setbuf(stdin, NULL);
 printf("Enter the number to convert: ");    
-scanf("%d",&number);
+scanf("%ld",&N);
 fflush(stdin);
+gap = solution(N);
+printf("gap: %ld ", gap);
 
 
-for(i=0;number>0;i++)    
-{
-array[i]=number%2;
-number=number/2;
-
-if(array[i]==0){
-    contador +=1;
-}
-if(pointer < contador){
-    pointer = contador;
-}
-if(array[i]==1){
-contador =0;
-}
-}
-
-printf("Convertion to binary: "); 
-k = i;
-for(i=i-1;i>=0;i--)    
-{    
- printf("%d",array[i]);
- 
-if(j <= k-1){
-    arrayAux1[j] = array[i];
-    j++;
-} 
-}  
-
-printf("\n Gap: "); 
-printf("%d", pointer); 
-return 0;  
+    return 0;
 }
 
 
